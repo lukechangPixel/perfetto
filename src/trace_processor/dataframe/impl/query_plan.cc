@@ -745,8 +745,8 @@ PERFETTO_NO_INLINE bytecode::Bytecode& QueryPlanBuilder::AddRawOpcode(
     }
     case base::variant_index<RowCountModifier, OneRowCount>():
       plan_.params.estimated_row_count =
-          std::max(1u, plan_.params.estimated_row_count);
-      plan_.params.max_row_count = std::max(1u, plan_.params.max_row_count);
+          std::min(1u, plan_.params.estimated_row_count);
+      plan_.params.max_row_count = std::min(1u, plan_.params.max_row_count);
       break;
     case base::variant_index<RowCountModifier, ZeroRowCount>():
       plan_.params.estimated_row_count = 0;
